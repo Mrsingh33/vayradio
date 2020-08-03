@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "966727017544",
+    "firebase_url": "https://vay-radio.firebaseio.com",
+    "project_id": "vay-radio",
+    "storage_bucket": "vay-radio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966727017544:android:670eb94c9f876c7f08a47d",
+        "android_client_info": {
+          "package_name": "com.radio.vayradio_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "966727017544-cdi35lomg0on1cbdnb7uo7vudc4fp96b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdHHcaxNzkZqBYUCXGYxdGNS_rd7wYYwI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "966727017544-cdi35lomg0on1cbdnb7uo7vudc4fp96b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
