@@ -41,7 +41,7 @@ class _WayRadioState extends State<WayRadio> {
     // Replace the testAdUnitId with an ad unit id from the AdMob dash.
     // https://developers.google.com/admob/android/test-ads
     // https://developers.google.com/admob/ios/test-ads
-    adUnitId: BannerAd.testAdUnitId,
+    adUnitId: 'ca-app-pub-3010234158911251/1279541122',
     size: AdSize.fullBanner,
     targetingInfo: targetingInfo,
     listener: (MobileAdEvent event) {
@@ -65,7 +65,7 @@ class _WayRadioState extends State<WayRadio> {
 
   @override
   void initState() {
-    FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-3010234158911251~7702862133');
+    FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-3010234158911251/1279541122');
 
     super.initState();
 
@@ -228,9 +228,9 @@ class _WayRadioState extends State<WayRadio> {
                         builder: (context,snapshot){
                           if (snapshot.hasData) {
 
-                            var artist = snapshot.data.data[0].track;
+                            var artist = snapshot.data;
                             print(artist);
-                            if(artist.artist == "" || artist.title == ""){
+                            if(artist.name == ""){
                               return Text(
                                 "We are Offline",
                                 style: TextStyle(
@@ -239,19 +239,22 @@ class _WayRadioState extends State<WayRadio> {
                                 ),
                               );
                             }else{
-                              return Text(
 
-                                artist.artist +"-"+ artist.title,
+                              return Text(
+                                isPlaying ?
+                                    artist.name :
+                                    "",
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20.0
+                                    fontSize: 15.0,
+                                  backgroundColor: Colors.black
                                 ),
                               );
                             }
 
                           } else {
                             return Text(
-                                "Loading....",
+                                "",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20.0
@@ -269,38 +272,56 @@ class _WayRadioState extends State<WayRadio> {
 //                      ),
                       SizedBox(height: 20,),
 
-                      Padding(
-                        padding:EdgeInsets.symmetric(horizontal:10.0),
-                        child:Container(
-                          height:5.0,
-                          width:330.0,
-                          color:Colors.white,
-
-
-                        ),
-                      ),
+//                      Padding(
+//                        padding:EdgeInsets.symmetric(horizontal:10.0),
+//                        child:Container(
+//                          height:5.0,
+//                          width:330.0,
+//                          color:Colors.white,
+//
+//
+//                        ),
+//                      ),
                       Align(
                         alignment: FractionalOffset.center,
-                        child: IconButton(
-                          iconSize: 80,
-                          icon: isPlaying? Icon(
-                            Icons.pause_circle_outline,
-
-                            color: Colors.white,
-                          )
-                              : Icon(
-                            Icons.play_circle_outline,
-                            color: Colors.white,
-
-                          ),
-                          onPressed: (){
+                            child: InkWell(
+                              onTap: (){
                             setState(() {
                               FlutterRadio.play(url: url);
                               isPlaying = !isPlaying;
                               isVisible = !isVisible;
+
                             });
                           },
-                        ),
+                              child: isPlaying? Image.asset(
+                                  'assets/images/pause.png',
+
+                              ): Image.asset(
+                                  'assets/images/play.png'
+                              )
+                            ),
+
+
+//                        child: IconButton(
+//                          iconSize: 80,
+//                          icon: isPlaying? Icon(
+//                            Icons.pause_circle_outline,
+//
+//                            color: Colors.white,
+//                          )
+//                              : Icon(
+//                            Icons.play_circle_outline,
+//                            color: Colors.white,
+//
+//                          ),
+//                          onPressed: (){
+//                            setState(() {
+//                              FlutterRadio.play(url: url);
+//                              isPlaying = !isPlaying;
+//                              isVisible = !isVisible;
+//                            });
+//                          },
+//                        ),
 
                       ),
                     ],
